@@ -2,6 +2,7 @@ var dateChart = dc.barChart('#date-chart');
 var ndx;
 
 d3.csv(window.CrossFilter.config.dataUrl, function (data) {
+	var numberFormat = d3.format('.1f');
 	
 	data.forEach(function(d){
 		d.dd=new Date(d.date);
