@@ -37,6 +37,6 @@ d3.csv(window.CrossFilter.config.dataUrl, function (data) {
 				.tickFormat(d3.time.format("%b"));
 	
 	dateChart.yAxis().ticks(5);
-	update();
+	
   	dc.renderAll(); 
 	})
