@@ -16,7 +16,7 @@ d3.csv(window.CrossFilter.config.dataUrl, function (data) {
        return d3.time.day(d.dd);
 	})
 	
-	var dateGroup = dateDimension.group().reduceCount(function (d) {
+	var dateGroup = dateDimension.group().reduceSum(function (d) {
       return d.case;
   	})
 	
