@@ -303,7 +303,7 @@ var disp;
       d3.select('#size').text(ndx.size());
   }
   function update() {
-     caseTable.beginSlice(ofs);
+     caseTable.beginSlice(ofs-1);
       caseTable.endSlice(ofs+pag);
       display();
   }
