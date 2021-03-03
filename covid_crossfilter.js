@@ -215,7 +215,7 @@ d3.csv(window.CrossFilter1.config.dataUrl,  function (data) {
 		.margins({top: 20, right: 10, bottom: 40, left: 40})
 		.dimension(dateDimension)
 		.group(dateGroup)
-		.x(d3.time.scale().domain([new Date(2019, 12, 1), new Date(2021, 02, 1)]))
+		.x(d3.time.scale().domain([new Date(2019, 12, 1), new Date(2021, 02, 28)]))
 		.xUnits(d3.time.days)
 		.barPadding(0.0)
 		.outerPadding(0.00)
