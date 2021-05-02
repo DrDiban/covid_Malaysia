@@ -13,6 +13,7 @@
 	<script>
 		window.CrossFilter1={};
 		window.CrossFilter2={};
+		window.CrossFilter3={};
 
 		window.CrossFilter1.config={
 				dataUrl: "data1.csv"
@@ -22,20 +23,31 @@
 				dataUrl: "data2.csv"
 			};
 
+		window.CrossFilter3.config={
+				dataUrl: "deaths.csv"
+			};
+
+
 	</script>
 
 	<style type="text/css">
-	#date-chart .x.axis text {
+	#location-chart .x.axis text {
 		transform: rotate(-30deg);
 	    text-anchor: end !important;
+		fill:black;
+		
+		
 	}
+
+	#comob-chart g.row text {fill: #476b6b;}
+
 	</style>
 
-
+	
 
 
 	<style>
-		#case-chart,#case-chart2, #discharge-chart, #death-chart,#icu-chart{
+		#case-chart,#case-chart2, #discharge-chart, #death-chart,#icu-chart,#death2-chart{
 		background: #fe9929;
 		width: 160px;
 		font-size: 34px;
@@ -50,13 +62,14 @@
 		}
 
 		.dc-table-group {
+			
 		visibility: collapse;
 	}
 	</style>
 		
 </head>
 
-<body>
+<body id="index">
 	
 	<nav>
 	<div id="navbar1">
@@ -64,9 +77,11 @@
 
 	<ul>
 
-	<li class="data"><a href="#data" >DATA</a></li>
+	<li class="cases"><a href="#cases" >CASES</a></li>
+	<li class="deaths"><a href="#deaths" >DEATHS</a></li>
 	<li class="forecast"><a href="#forecast">FORECAST</a></li>
 	<li class="analysis"><a href="#analysis">ANALYSIS</a></li>
+	<li class="references"><a href="#references">REFERENCES</a></li>
 
 	</ul>
 	</div>
@@ -79,16 +94,16 @@
 	<div class="bg"><p id="frontpg"> COVID-19 CASE PREDICTIONS IN MALAYSIA <br> USING TIME SERIES ANALYSIS</p></div>
 	
 	
-	<div class='container' style='font: 12px sans-serif;'>
-		<section id="data">
+	<div class='container' style='font: 12px sans-serif;' >
+		<section id="cases">
 
 		<div class='row'>
 			<br>
 			<br>
-			<h1>Malaysia Covid-19 data</h1>
+			<h1>Malaysia Covid-19 Cases</h1>
 			<div id='date-chart'>
 	            	<h5><strong>
-	                Cumulative Covid-19 Cases in Malaysia
+	                Covid-19 Cases in Malaysia
 	                </strong> (click and drag to filter by date)
 	                <span>
 	                <a class="reset"
@@ -101,12 +116,14 @@
 	       		</div>
 		</div>
 
-		
 
 
-		<div class='row' style='margin-bottom:20px;font-size:15px;'>
+
+
+
+		<div class='row' style='margin-bottom:20px;margin-left:250px;font-size:15px;'>
 			<div>
-	            		<a href="javascript:dc.filterAll(); dc.renderAll();">Reset Filter</a>
+	            		<a href="javascript:dc.filterAll(); dc.renderAll();" >Reset All Filter</a>
 	        	</div>
 			<br>
 			
@@ -134,29 +151,38 @@
 
 		</div>
 
-	    <div class='row'>
+
+
+
+
+		<div class='row'>
 	        <div class="dc-data-count" id='data-count'>
 	            <div id="paging">
 	                Showing <span id="begin"></span>-<span id="end"></span> of 
-	                <span class="filter-count"></span> Selected Dates
+	                <span class="filter-count"></span> Selected Dates 
 	            </div>
 	            
 	            <input id="last" class="btn" type="Button" value="Prev" onclick="javascript:last()" />
-	            <input id="next" class="btn" type="button" value="Next" onclick="javascript:next()"/>
-				<input id="reset_to_first" class="btn" type="button" value="Reset to First" onclick="javascript:reset_to_first()"/>
+	            <input id="next" class="btn" type="Button" value="Next" onclick="javascript:next()"/>
+		    <input id="reset_to_first" class="btn" type="Button" value="Reset to First" onclick="javascript:reset_to_first()"/>
 	        </div>
 	    </div>
 
+
+
+
+
 	    <div class="row">
-	        <h3> Covid-19 Data </h3>
-	        <table class='table table-hover dc-data-table' id='data-table'>
+		
+	        <h3> Covid-19 data for cases</h3>
+	        <table class='table  table-bordered padded table-striped table-hover dc-data-table' id='data-table' style="width:70%" >
 	            <thead>
 	                <tr class='header'>
-			    <th class="text-center">Date</th>
-	                    <th class="text-center">Cases</th>
-	                    <th class="text-center">Discharged</th>
-	                    <th class="text-center">Deaths</th>
-	                    <th class="text-center">ICU</th>
+			    <th class="text-center" >Date</th>
+	                    <th class="text-center" >Cases</th>
+	                    <th class="text-center" >Discharged</th>
+	                    <th class="text-center" >Deaths</th>
+	                    <th class="text-center" >ICU</th>
 	                </tr>
 	            </thead>
 	        </table>
@@ -164,6 +190,160 @@
 
 		
 	</section>
+	
+	<section id="deaths">
+		<div class='row'>
+			<br>
+			<br>
+			<h1>Malaysia Covid-19 Deaths</h1>
+			<div  id='pie-chart3'>
+
+			<h5><strong>
+	                	Gender chart
+	                    </strong>
+	                <span>
+	                <a class="reset"
+	                    href="javascript:piechart3.filterAll();dc.redrawAll();"
+	                    style="display: none;">
+	                	reset
+	                </a>
+	                </span>
+	            	</h5>
+			</div>
+
+			<div id='group-chart'>
+			<h5><strong>
+	                	Age group chart
+	                </strong>
+	                <span>
+	                <a class="reset"
+	                    href="javascript:AgeGroupChart.filterAll();dc.redrawAll();"
+	                    style="display: none;">
+	                	reset
+	                </a>
+	                </span>
+	            	</h5>
+
+			</div>
+
+			<div id='location-chart'>
+			<h5><strong>
+	                	Location chart
+	                </strong>
+	                <span>
+	                <a class="reset"
+	                    href="javascript:locationChart.filterAll();dc.redrawAll();"
+	                    style="display: none;">
+	                	reset
+	                </a>
+	                </span>
+	            	</h5>
+			</div>
+
+			
+			<div id='comob-chart'>
+
+			<h5><strong>
+	                	Comorbidity chart
+	                </strong>
+	                <span>
+	                <a class="reset"
+	                    href="javascript:comobchart.filterAll();dc.redrawAll();"
+	                    style="display: none;">
+	                	reset
+	                </a>
+	                </span>
+	            	</h5>
+			
+			</div>
+
+			<div id='date-chart3'>
+	            	<h5><strong>
+	                Covid-19 Deaths in Malaysia
+	                </strong> (click and drag to filter by date)
+	                <span>
+	                <a class="reset"
+	                    href="javascript:dateChart3.filterAll();dc.redrawAll();"
+	                    style="display: none;">
+	                reset
+	                </a>
+	                </span>
+	            	</h5>
+			</div>
+
+
+
+		</div>
+
+
+		<div class='row' style='margin-bottom:20px;margin-left:425px;font-size:15px;'>
+
+			<div>
+	            		<a href="javascript:dc.filterAll(); dc.renderAll();" style="padding-left:38px;">Reset All Filter</a>
+	        	</div>
+			<br>
+
+			<div id='death2-chart'>
+			<h5><strong>
+	                	Deaths:  
+	               </strong>
+	            	</h5>
+			</div>
+
+
+			<!-- <div id='median-chart'>
+			<h5><strong>
+	                	Deaths:  
+	               </strong>
+	            	</h5>
+			</div>-->
+		</div>
+	
+
+
+	    <div class='row'>
+	        <div class="dc-data-count2" id='data-count'>
+	            <div id="paging">
+	                Showing <span id="begin2"></span>-<span id="end2"></span> of 
+	                <span class="filter-count"></span> Selected Deaths
+	            </div>
+	            
+	            <input id="last2" class="btn" type="Button" value="Prev" onclick="javascript:last2()" />
+	            <input id="next2" class="btn" type="Button" value="Next" onclick="javascript:next2()"/>
+		    <input id="reset_to_first2" class="btn" type="button" value="Reset to First" onclick="javascript:reset_to_first2()"/>
+	        </div>
+	    </div>
+
+
+
+
+
+	<div class="row">
+		
+	        <h3> Covid-19 data for deaths</h3>
+	        <table class='table  table-bordered padded table-striped table-hover dc-data-table' id='death-table' style="width:98%" >
+	            <thead>
+	                <tr class='header'>
+			    <th class="text-center" >Date</th>
+	                    <th class="text-center" >Gender</th>
+	                    <th class="text-center" >Age</th>
+	                    <th class="text-center" >Hospital</th>
+	                    <th class="text-center" >Location</th>
+			    <th class="text-center" >Comorbidity</th>
+			    <th class="text-center" >Detect to Death</th>
+	                </tr>
+	            </thead>
+	        </table>
+	    </div>
+
+
+	
+
+	</section>
+	
+
+	
+	
 	
 	<section id="forecast">
 
@@ -208,15 +388,574 @@
 	</section>
 
 	<section id="analysis">
-		<div class="row" style='margin-bottom:20px;font-size:15px;'>
+		<div class="row" style='margin-bottom:20px;font-size:15px;' >
 			<div>
 				<br>
 				<br>
 				<h1>Analysis</h1>
-				<p> The Covid-19 daily cases are <strong>averaged for 7 days</strong> to smoothen the day-to-day
-                                      fluctuations. The resulting graph is shown in <span style="color: red">Figure 1</span>.</p> 
+				
+				
+				<h2>Part 1 - Deaths</h2>
+				
+
+				<p id='writetext'><span class='Fig_Table'>Figure 1</span> shows Covid-19 deaths in Malaysia according to ten age groups. Based on the figure, it
+				can be seen that Covid-19 disproportionately affect patient with older age. Deaths related to <strong>age 60 and above represents 
+				70% </strong>of total deaths while this value increases to <strong>94% if age 40 and above</strong> were considered.</p> 
+				
+				<img  class="img-responsive center-block test" src="Deaths_age_group.png">
+
+				
+				<p id='writetext'><span class='Fig_Table'>Table 1</span> shows the breakdown of deaths percentage and deaths rate ratio by age group. For 
+				deaths ratio, age group 10-19 years old is used as the reference since it corresponds to the lowest deaths among all groups. 
+				Note that, <strong>age group 60-69</strong> have the highest deaths ratio with <strong>77 times</strong> of the reference group. </p>
+				
+
+				<p id='writetext'; style='font-weight: bold;'>Table 1: Deaths percentage and deaths rate ratio for different age groups</p>
+
+				<table id='writetext' class='table  table-bordered table-striped table-hover dc-data-table'  style="width:100%" >
+	            			<thead>
+	                		<tr class='header'>
+					<th class="text-center" >Criteria</th>
+			    		<th class="text-center" >0-9 years old</th>
+	                    		<th class="text-center" >10-19 years old</th>
+	                    		<th class="text-center" >20-29 years old</th>
+	                    		<th class="text-center" >30-39 years old</th>
+	                    		<th class="text-center" >40-49 years old</th>
+			    		<th class="text-center" >50-59 years old</th>
+			    		<th class="text-center" >60-69 years old</th>
+					<th class="text-center" >70-79 years old</th>
+					<th class="text-center" >80-89 years old</th>
+					<th class="text-center" >Above 89 years old</th>
+
+	                	</tr>
+				</thead>
+				<tbody>
+
+				<tr>
+    					<td>Deaths % by group</td>
+    					<td>0.53</td>
+     					<td>0.38</td>
+    					<td>1.30</td>   				
+					<td>3.74</td>
+    					<td>8.02</td>
+     					<td>16.21</td>
+    					<td>29.56</td>   				
+					<td>23.14</td>    					
+					<td>13.83</td>   				
+					<td>3.29</td>
+					
+	
+  				</tr>
+
+
+				<tr>
+    					<td>Deaths rate ratio</td>
+    					<td>1.4</td>
+     					<td>Reference group</td>
+    					<td>3.4</td>   				
+					<td>9.8</td>
+    					<td>21.0</td>
+     					<td>42.2</td>
+    					<td>77.4</td>   				
+					<td>61.0</td>    					
+					<td>36.2</td>   				
+					<td>8.6</td>
+					
+	
+  				</tr>
+				</tbody>
+
+
+
+
+	            		
+	        		</table>
+				
+				<p id='writetext'>According to <span class='Fig_Table'>Figure 2</span>, men are almost <strong>twice likely to die</strong> from Covid-19 than women. This finding
+				tallies with a study conducted by <a href="https://www.cdc.gov/pcd/issues/2020/20_0247.htm#:~:text=According%20to%20the%20largest%20body,fatality%20ratio%20is%20approximately%202.4">
+				Griffith et al.</a> [1] whom reported <strong>more men died</strong> from Covid-19 in 41 out of 47 countries
+				even though there was no apparent sex differences exist in the number of confirmed cases. The authors attribute this
+				to <strong>three factors</strong>:</p> 
+
+				<ol>
+  					<li>Biological factors</li>
+  					<li>Psychosocial factors</li>
+  					<li>Behavioral factors</li>
+				</ol> 
+
+				<p id='writetext'> For the first factor, <strong>inheritance of X-chromosome by the women</strong> which contains a high density of immune-related genes
+				make them mount stronger immune responses than men [<a href='https://pubmed.ncbi.nlm.nih.gov/32373791/'>2</a>]. Besides, <strong>female sex hormones</strong>, including estrogen, progesterone, and androgens was found 
+				affecting the outcomes of viral infections positively. Studies by <a href='https://academic.oup.com/eurheartj/article/41/19/1818/5834646'>Oudit and Pfeffer</a> [3] 
+				has shown <strong>men have higher plasma <cite>angiotensin-converting 
+				enzyme 2</cite> (ACE2)</strong> levels than women. This impact men negatively since severe acute <cite> respiratory syndrome coronavirus 2</cite> (SARS‐CoV‐2) uses the 
+				SARS‐CoV receptor ACE2 for entry into the host cell [<a href="https://pubmed.ncbi.nlm.nih.gov/20926566/">4</a>]. Thus, men are susceptible for higher tissue expression of the ACE2 receptor for SARS‐CoV infections
+				or the consequences of SARS-CoV-2.</p>
+
+				
+				<div class='row_pic'>
+  					
+    						<img  class="img-responsive center-block test" src="Deaths_gender.png">
+  					
+  					
+    						<img class="img-responsive center-block test" src="Deaths_comorbidity.png">
+  					
+				</div>
+
+				<p id='writetext'>Concerning psychosocial factor, <strong>men tend to view Covid-19 as less harmful</strong> to them than woman [<a href="https://news.gallup.com/poll/295505/coronavirus-worries-surge.aspx">5</a>]. 
+				These downplay of consequences make them more inclined to join large gatherings or avoiding close physical contact with others [<a href="https://genderpolicyreport.umn.edu/gender-masculinity-and-covid-19"</a>6,
+				<a href="https://www.menshealthforum.org.uk/news/our-own-fault-men-and-covid-19">7</a>, <a href="https://www.cnn.com/2020/05/11/uk/covid-19-death-low-skilled-job-intl-scli-gbr/index.html">8</a>]. 
+				In addition, men behavioural pattern that includes <strong>higher rates of tobacco use and alcohol consumption</strong> increases their mortality rate due to 
+				Covid-19 comorbidity diseases related to these activities [6, <a href="https://pubmed.ncbi.nlm.nih.gov/32563357/">9</a>, 10, 11]. Men also tend to have <strong>lower rates</strong> than women of <strong>practising infection prevention 
+				behavioural</strong> which includes handwashing, social distancing, and wearing masks [6, 9, 10, <a href="http://www.ncbi.nlm.nih.gov/pubmed/32283124">12</a>]. </p>
+				
+				<p id='writetext'><span class='Fig_Table'>Figure 3</span> show the break down of Covid-19 comorbidities among those who died from the disease. 
+				These comorbidities are mainly obtained from <cite><a href="https://www.cdc.gov/coronavirus/2019-ncov/need-extra-precautions/people-with-medical-conditions.html">
+				Centers for Disease Control and Prevention</a></cite> (CDC) [13] and other resources [<a href="https://onlinelibrary.wiley.com/doi/10.1002/jmv.26444">14</a>, 
+				<a href="https://bronchiectasisnewstoday.com/information-about-covid-19-for-bronchiectasis-patients/">15</a>, 
+				<a href="https://ard.bmj.com/content/79/6/837">16</a>,
+				<a href="https://bmjopenrespres.bmj.com/content/8/1/e000845">17</a>] are then used to filter general diseases described by the Malaysia <cite>Ministry of Health</cite> (MOH) on the deceased medical conditions. 
+				From <span class='Fig_Table'>Figure 3</span>, it can be seen that <strong>high blood pressure is the most frequent comorbidity</strong> found in the deceased 
+				representing <strong>33.7% </strong>followed by diabetes (25.6%), chronic kidney disease (12.2%), heart disease (11.2%), stroke (5.8%) and others (11.5%). </p>
+				
+
+				<img class="img-responsive center-block test" src="Deaths_no_comorbidity.png">
+
+				<p id='writetext'><span class='Fig_Table'>Figure 4</span> shows the number of Covid-19 related comorbidities the deceased had. <strong>84% </strong>of the deceased had at least <strong>one or more
+				comorbidities</strong> related to Covid-19 while the remaining <strong>16% did not have any Covid-19 related comorbidities</strong>. 
+
+
+
+				<p id='writetext'><span class='Fig_Table'>Figure 5</span> shows the number of days from the date when Covid-19 was first detected on the patient to the date when the 
+				patient died. As seen from the figure, most deaths occurred between <strong>0-9 days</strong> which represents <strong>66% of the deaths</strong> and this number grows to
+				<strong>87%</strong> if <strong>0-19 days</strong> were considered. <span class='Fig_Table'>Figure 6</span> zoom in further on the period between 0-9 days. As seen from <span class='Fig_Table'>Figure 6</span>, most deaths
+				occurred <strong>one day</strong> after Covid-19 was detected which represents <strong>almost a quarter (24%)</strong> of the total deaths.</p>
+
+				<div class='row_pic'>
+  					
+    						<img  class="img-responsive center-block test" src="Date_to_Deaths_groups.png">
+  					
+  					
+    						<img class="img-responsive center-block test" src="Date_to_Deaths_group_0_9.png">
+  					
+				</div>
+
+				<p id='writetext'><span class='Fig_Table'>Figure 7</span> shows how Covid-19 deaths are distributed by the day. Based
+				on <span class='Fig_Table'>Figure 7</span>, <strong>Saturday, Sunday and Monday</strong> reported deaths 
+				<strong>number below the average value of 197</strong>. In order to determine whether this has any significance, the Chi-square 
+				test was carried out with the null and alternative hypothesis are as follows:
 				<br>
-				<img src="images/Daily_cases.png">
+
+				     <p id='writetext'; class="tab1">H<sub>o</sub>: There is an equal probability that death can occur on any day.</p>
+				
+				     <p id='writetext'; class="tab1">H<sub>a</sub>: There is not an equal probability that death can occur on any day.</p>
+
+				</p>
+
+				<p id='writetext'>The Chi-square results in a <strong>p-value smaller than 0.05 but larger than 0.01</strong>. Thus, at <strong>95% confidence
+				interval, the null hypothesis is rejected</strong> and the alternative hypothesis whereby there is not an equal probability that death can occur on any day
+				is accepted. </p>
+
+				
+
+				<img class="img-responsive center-block test" src="Deaths_by_day.png">
+				
+
+				<p id='writetext'><span class='Fig_Table'>Figure 8</span> shows the number of deaths according to the states in Malaysia.
+				Note that, location data for five deaths that occurred in 2<sup>nd</sup> April 2021 are not available from MOH. This location
+				is estimated by the frequency of death that occcured on states 7 days prior and 7 days ahead of the missing date data. According to <span class='Fig_Table'>Figure 8</span>,
+				<strong>Sabah (412) recorded the highest number of deaths</strong> followed by Selangor (369), Sarawak (137), Kuala Lumpur (125), Johor (110), and the rest (227).</p>  
+				 
+				<img class="img-responsive center-block test" src="Deaths_by_states.png">
+
+
+				<p id='writetext'>The number of Covid-19 cases and the number of deaths have a <strong>strong linear correlation</strong> as can be seen from <span class='Fig_Table'>Figure 9</span>. Based on
+				the data, the relationship between the number of Covid-19 cases and deaths has a <strong>Pearson correlation score of 0.87</strong>, which indicates a strong correlation. 
+				<strong>Sabah is a peculiar state</strong> whereby the number of deaths is way higher compared to the positive Covid-19 cases registered in their state. If Sabah was removed 
+				from the dataset, the <strong>Pearson correlation scores move close to 1 (0.97)</strong> which indicates that Sabah deaths to case ratio do not tally with the rest
+				of the states in Malaysia.</p>
+
+				<img class="img-responsive center-block test" src="Cases_vs_deaths.png">
+				
+
+				<p id='writetext'>The impact of population density on the number of deaths per 100,000 cases is investigated. The corresponding plot is shown in 
+				<span class='Fig_Table'>Figure 10</span>. Visible inspection clearly shows that there is no correlation between these two criteria
+				and the <strong>Pearson correlation score of close to 0 (-0.09)</strong> support this claim. This finding may be at odd against the common conception that highly
+				densely populated places should result in more Covid-19 deaths. However, many other researchers found that this may not be the case. <a href='https://www.tandfonline.com/doi/full/10.1080/01944363.2020.1777891'>Hamidi et al</a> [18].
+				from Johns Hopkins Bloomberg School of Public Health claim that apart from metropolitan areas death rate is found to be <strong>inversely proportional to population density</strong> in the USA.
+				The authors attributed this inverse mortality relation to the availability of better healthcare systems at higher density locations. 
+				A very recent study by the <a href='https://www.iza.org/publications/dp/13440/urban-density-and-covid-19'>Carozzi et al.</a>[19] from the London school of economics and Institute of Labour Economics, based on urban Covid-19 cases in the USA, 
+				found that the <strong>denser populated region tends to experience earlier breakout</strong> than less densely populated region. 
+				However, both Covid-19 infection and <strong>death rates are unrelated to urban population density</strong>.</p>
+				  
+
+				<img class="img-responsive center-block test" src="Deaths_vs_density.png">
+
+
+
+				<p id='writetext'>Next, the socio-economic impact on the mortality rate is investigated. The monthly median income for each state is obtained
+				from <a href='https://www.epu.gov.my/sites/default/files/2020-08/Jadual%204_Pendapatan%20isi%20rumah%20kasar%20bulanan%20penengah%20mengikut%20kumpulan%20etnik%2C%20strata%20dan%20negeri%2C%20Malaysia%2C%201970-2019.pdf'>
+				The Household Income Survey</a> [20] conducted by the Departments of Statistics of Malaysia. <span class='Fig_Table'>Figure 11</span> shows the plot
+				of deaths per 100,000 cases versus median income for different states in Malaysia. These two criteria have a <strong>Pearson correlation of -0.03</strong> which indicates
+				<strong>no correlation</strong>. Thus, it can be concluded that <strong>socio-economic factors not a determinant factor</strong> for Covid-19 deaths in Malaysia. </p> 
+				
+				<img class="img-responsive center-block test" src="Deaths_vs_income.png">
+
+				<p id='writetext'>Data used for <span class='Fig_Table'>Figure 9-11</span> is presented in <span class='Fig_Table'>Table 2</span>.</p>
+
+				<p id='writetext'; style='font-weight: bold;'>Table 2: Data for Covid-19 cases, deaths, population, size and median income for different states in Malaysia.</p>
+				<table id='writetext' class='table  table-bordered table-striped table-hover dc-data-table'  style="width:100%" >
+	            			<thead>
+	                		<tr class='header'>
+					<th class="text-center" >States</th>
+			    		<th class="text-center" >Total number of deaths</th>
+	                    		<th class="text-center" >Total number of cases</th>
+	                    		<th class="text-center" >Population <sup><a href='http://pqi.stats.gov.my/searchBI.php?tahun=2020&kodData=2&kodJadual=1&kodCiri=1&kodNegeri=11'>[21]</a></sup> (million)</th>
+	                    		<th class="text-center" >Size<sup><a href='https://web.archive.org/web/20101227065739/http://www.statistics.gov.my/portal/download/download_POPULATION.php?cat=1&id_file=3'>[22]</a></sup> (km)</th>
+	                    		<th class="text-center" >Median income<sup><a href='https://www.epu.gov.my/sites/default/files/2020-08/Jadual%204_Pendapatan%20isi%20rumah%20kasar%20bulanan%20penengah%20mengikut%20kumpulan%20etnik%2C%20strata%20dan%20negeri%2C%20Malaysia%2C%201970-2019.pdf'>[20]</a></sup> (RM)</th>
+			
+
+	                	</tr>
+				</thead>
+				<tbody>
+
+				<tr>
+    					<td>Selangor</td>
+    					<td>369</td>
+     					<td>123,589</td>
+    					<td>6.54</td>   				
+					<td>8,104</td>
+    					<td>8,210</td>
+     				
+					
+	
+  				</tr>
+
+
+				<tr>
+    					<td>Sabah</td>
+    					<td>412</td>
+     					<td>56,795</td>
+    					<td>3.91</td>   				
+					<td>73,631</td>
+    					<td>4,235</td>
+
+					
+	
+  				</tr>
+
+
+
+				<tr>
+    					<td>Johor</td>
+    					<td>110</td>
+     					<td>43,316</td>
+    					<td>3.78</td>   				
+					<td>19,210</td>
+    					<td>6,427</td>
+
+					
+	
+  				</tr>
+
+
+
+				<tr>
+    					<td>Kuala Lumpur</td>
+    					<td>125</td>
+     					<td>40,092</td>
+    					<td>1.77</td>   				
+					<td>243</td>
+    					<td>10,549</td>
+
+					
+	
+  				</tr>
+
+
+				<tr>
+    					<td>Negeri Sembilan</td>
+    					<td>31</td>
+     					<td>17,915</td>
+    					<td>1.13</td>   				
+					<td>6,686</td>
+    					<td>5,055</td>
+
+					
+	
+  				</tr>
+
+
+				<tr>
+    					<td>Sarawak</td>
+    					<td>137</td>
+     					<td>23,940</td>
+    					<td>2.83</td>   				
+					<td>124,450</td>
+    					<td>4,554</td>
+
+  				</tr>
+
+				<tr>
+    					<td>Pulau Pinang</td>
+    					<td>22</td>
+     					<td>18,284</td>
+    					<td>1.77</td>   				
+					<td>1,048</td>
+    					<td>6,169</td>
+
+  				</tr>
+				<tr>
+    					<td>Perak</td>
+    					<td>45</td>
+     					<td>14,061</td>
+    					<td>2.51</td>   				
+					<td>21,035</td>
+    					<td>4,273</td>
+
+  				</tr>
+
+				<tr>
+    					<td>Kedah</td>
+    					<td>25</td>
+     					<td>9,081</td>
+    					<td>2.19</td>   				
+					<td>9,500</td>
+    					<td>5,522</td>
+
+  				</tr>
+
+				<tr>
+    					<td>Melaka</td>
+    					<td>21</td>
+     					<td>6,902</td>
+    					<td>0.93</td>   				
+					<td>1,664</td>
+    					<td>6,054</td>
+
+  				</tr>
+
+				<tr>
+    					<td>Kelantan</td>
+    					<td>28</td>
+     					<td>8,448</td>
+    					<td>1.91</td>   				
+					<td>15,099</td>
+    					<td>3,563</td>
+
+  				</tr>
+
+
+				<tr>
+    					<td>Pahang</td>
+    					<td>18</td>
+     					<td>4,695</td>
+    					<td>1.68</td>   				
+					<td>36,137</td>
+    					<td>4,440</td>
+
+  				</tr>
+
+				<tr>
+    					<td>Terengganu</td>
+    					<td>14</td>
+     					<td>3,895</td>
+    					<td>1.26</td>   				
+					<td>13,035</td>
+    					<td>5,545</td>
+
+  				</tr>
+
+				<tr>
+    					<td>W.P Labuan</td>
+    					<td>13</td>
+     					<td>2,427</td>
+    					<td>0.10</td>   				
+					<td>91</td>
+    					<td>6,726</td>
+
+  				</tr>
+
+				<tr>
+    					<td>W.P Putrajaya</td>
+    					<td>8</td>
+     					<td>1,275</td>
+    					<td>0.11</td>   				
+					<td>49</td>
+    					<td>9,983</td>
+
+  				</tr>
+
+				<tr>
+    					<td>Perlis</td>
+    					<td>2</td>
+     					<td>349</td>
+    					<td>0.25</td>   				
+					<td>821</td>
+    					<td>4,494</td>
+
+  				</tr>
+				</tbody>
+
+
+
+
+	            		
+	        		</table>
+
+				<p id='writetext'>As mentioned earlier Sabah is a peculiar state whereby the percentage of death to the number of cases (0.73%)
+				is <strong>2.4 times than the national value</strong> excluding Sabah (0.30%). The question is why it so? One <strong>hypothesis will be that Sabah has a 
+				population distribution largely concentrated on older age</strong> than the rest of the country. As mentioned earlier, 70% of death occurred 
+				for Covid-19 patient aged 60 and above. To test this hypothesis, the similarity between the nation age distribution with Sabah
+				age distribution is computed using data from Malaysia goverment Population Quick Info website. The data obtained from the website
+				is shown in <span class='Fig_Table'>Table 3</span>.
+
+				<p id='writetext'; style='font-weight: bold;'>Table 3: Age distribution for states in Malaysia excluding Sabah and Sabah.</p>
+
+				<table id='writetext' class='table  table-bordered table-striped table-hover dc-data-table'  style="width:70%" >
+	            			<thead>
+	                		<tr class='header'>
+					<th class="text-center" >Age Range</th>
+			    		<th class="text-center" style="width: 20%">States in Malaysia excluding Sabah ('000)</th>
+					<th class="text-center" style="width: 20%">States in Malaysia excluding Sabah (%)</th>
+	                    		<th class="text-center" style="width: 20%">Sabah ('000)
+	                    		<th class="text-center" style="width: 20%">Sabah (%)</th>
+
+
+	                	</tr>
+				</thead>
+
+				<tr>
+    					<td>0-9</td>
+    					<td>4508.1</td>
+					<td>15.7</td> 
+     					<td>588.1</td>				
+					<td>15.0</td>
+  				</tr>
+
+				<tr>
+    					<td>10-19</td>
+    					<td>4591.3</td>
+    					<td>16.0</td> 
+     					<td>748.5</td>
+					<td>19.2</td>
+  				</tr>
+
+				<tr>
+    					<td>20-29</td>
+    					<td>5435.2</td>
+    					<td>18.9</td>  
+     					<td>945.1</td>
+					<td>24.2</td>
+  				</tr>
+
+				<tr>
+    					<td>30-39</td>
+    					<td>4751.8</td>
+    					<td>16.5</td> 
+     					<td>694.5</td>
+					<td>17.8</td>
+  				</tr>
+
+				<tr>
+    					<td>40-49</td>
+    					<td>3376.6</td>
+    					<td>11.7</td>  
+     					<td>413.7</td>
+					<td>10.6</td>
+  				</tr>
+
+				<tr>
+    					<td>50-59</td>
+    					<td>2822.0</td>
+    					<td>9.8</td>
+     					<td>279.7</td>
+					<td>7.2</td>
+  				</tr>
+
+				<tr>
+    					<td>60-69</td>
+    					<td>1950.9</td>
+    					<td>6.8</td> 
+     					<td>160.1</td>
+					<td>4.1</td>
+  				</tr>
+
+				<tr>
+    					<td>70-79</td>
+    					<td>954.9</td>
+    					<td>3.3</td>  
+     					<td>58.4</td>
+					<td>1.5</td>
+  				</tr>
+
+				<tr>
+    					<td>80-84</td>
+    					<td>208.6</td>
+    					<td>0.7</td>  
+     					<td>11.5</td>
+					<td>0.3</td>
+  				</tr>
+
+				<tr>
+    					<td>Above 85</td>
+    					<td>149.4</td>
+    					<td>0.5</td>  
+     					<td>8.9</td>
+					<td>0.2</td>
+  				</tr>
+				
+				</tbody>
+	            		
+	        		</table>				
+				
+				<p id='writetext'> Based on the data presented in <span class='Fig_Table'>Table 3</span>, the age distribution (fraction) between
+				Sabah and the rest of the states in Malaysia is <strong>very similar</strong> based on <strong>the Pearson correlation score of 0.97</strong>. Besides, the Manhattan
+				distance between these two criteria is equal to 7.7 which indicates the age distribution is not far apart. The <strong>most significant information</strong>
+				that is obtained from <span class='Fig_Table'>Table 3</span> is that <strong>Sabah has a younger population</strong> than the rest of the states in Malaysia.
+				<strong>76.2% of the Sabah population</strong> is between the age of <strong>0-39 years old</strong>, while only <strong>67.1% population</strong> for the <strong>rest of the states in Malaysia</strong>
+				fall in this category. Thus, it is <strong>safe to reject the hypothesis</strong> that Sabah high deaths to Covid-19 ratio are due to population distribution 
+				that is largely concentrated on older age.</p>
+
+				<p id='writetext'> The second hypothesis that can be proposed is that <strong>Sabah have a population that is less healthy</strong> than the rest 
+				of the state in Malaysia. As mentioned earlier <strong>84% of deceased</strong> has at least </strong>one or more Covid-19 comorbidities</strong>. In order,
+				to validate this hypothesis, data from <a href='https://www.moh.gov.my/moh/penerbitan/MYHAAG2018.pdf'>Malaysian Health at Glance</a> [23] report by MOH is examined.
+				Based on this <span class='Fig_Table'>Figure 12</span>, <strong> Sabah has a morbidity rate</strong>  due to tracer conditions for hypertension
+				and diabetes <strong> lower than the national average</strong>. Note that these two diseases were the top two comorbidities associated with Covid-19 deaths (<span class='Fig_Table'>Figure 3</span>).
+				While the third most frequent comorbidities associated to Covid-19 deaths i.e. chronic kidney disease (<span class='Fig_Table'>Figure 3</span>) is caused by 
+				diabetes and high blood pressure according with <a href='https://www.kidney.org/atoz/content/about-chronic-kidney-disease#:~:text=The%20two%20main%20causes%20of,blood%20vessels%2C%20nerves%20and%20eyes.'>
+				National Kidney Foundation</a>. Thus, there is <strong> no enough evidence to support the hypothesis</strong> that Sabah high deaths in Covid-19 cases are due to their population being less healtier
+				than the rest of the states in Malaysia. </p> 
+				
+
+				<center><p id='writetext' style='font-weight: bold';>Figure 12: Morbidity rate for tracer conditions</p></center>
+				<img class="img-responsive center-block test" src="HBP_DM.png" style="width:550px;height:500px;">
+
+				<p id='writetext'>The third probable hypothesis is that the <strong>Sabah Covid-19 positive cases are under-reported</strong>. To validate this
+				claim, the Covid-19 positive rate shown in <span class='Fig_Table'>Figure 13</span> is examined [<a href='https://ourworldindata.org/coronavirus-testing'>24</a>]. According to criteria published by WHO, in May 2020, <strong>a positive rate of less than 5%</strong> is one indicator 
+				that the <strong>Covid-19 epidemic is under control</strong> in a country [24]. A rise in the positive rate is an indication that the virus is <strong>spreading
+				faster than the growth that is seen in confirmed cases</strong> [24]. As shown in <span class='Fig_Table'>Figure 13</span>, the <strong>positive rate in Malaysia exceeds the 5%
+				threshold around November 2020</strong>. </p>
+
+				<img class="img-responsive center-block test" src="positive_rate.png">
+
+				<p id='writetext'>Coincidentally, this was the time when Sabah was experiencing its worst outbreak as shown
+				in <span class='Fig_Table'>Figure 14</span>.Thus, a lot of Covid-19 cases <strong>likely goes unreported during this period</strong> and the actual number of cases for <strong>Sabah should be more than 100,000</strong> 
+				and not 56,795 that were reported. </p>
+
+				<img class="img-responsive center-block test" src="Sabah.png">
+
+
+				<h2>Part 2 - Covid-19 case prediction</h2>
+
+
+				<p id='writetext'> The Covid-19 daily cases are <strong>averaged for 7 days</strong> to smoothen the day-to-day
+                                      fluctuations. The resulting graph is shown in <span style="color: red">Figure 1</span>.</p> 
+
+				
+				
+				
+				<br>
+				<img src="Daily_cases.png">
 				<br>
 				<br>
 				
@@ -225,7 +964,7 @@
 				confirm the new transformed data stastifiy stationarity condition. The resulting calculation <strong>(see below)</strong> 
 				shows the level of significance is close to 0, confirming stationarity. </p>
 
-				<img src="images/ad_fuller.png" style="width:250px;height:200px;">
+				<img src="ad_fuller.png" style="width:250px;height:200px;">
 				<p> ACF and PACF graph are plotted as shown in <span style="color: red">Figure 2</span>  
 					and <span style="color: red">Figure 3</span> to determine the number of lags 
 					to be considered in auto regression moving average (ARMA) model.</p>
@@ -233,16 +972,16 @@
 
 				<div class="row_pic">
   					<div class="column_pic">
-    						<img src="images/ACF_daily_cases.png">
+    						<img src="ACF_daily_cases.png">
   					</div>
   					<div class="column_pic">
-    						<img src="images/PACF_daily_cases.png">
+    						<img src="PACF_daily_cases.png">
   					</div>
 				</div>
 				<p> For the ACF (<span style="color: red">Figure 2</span>), lags until <strong>day 12</strong> shows values above significance level.
 				While for the PACF (<span style="color: red">Figure 3</span>), lags until <strong>day 14</strong> shows values above significance level. </p>
 				<br>
-				<p> ARMA model with lags up to 10 days for AR and MA are tested. In total 114 different models were simulated and 
+				<p> ARMA model with lags up to 7 days for AR and MA are tested. In total 114 different models were simulated and 
 				only <strong>10 models</strong> show result where all coefficients are above 5% siginficance level. The Log Likelihood and AIC
 				for these models are summarised in the <span style="color: red">Table 1</span> below.</p> 
 
@@ -314,20 +1053,20 @@
 
 				First, the Dicky-Fuller test show the significance level of the residual is close to 0, thus it is stationary. </p>
 
-				<img src="images/ad_fuller2.png" style="width:250px;height:200px;">
+				<img src="ad_fuller2.png" style="width:250px;height:200px;">
 
 				<p>Second, the residual values are checked for autocorrelation as shown <span style="color: red">Figure 4</span>. All lags show ACF values below 
-				significance level apart from <strong>lags 10 and 12 </strong>. However, since these lags are far down the line, the model prediction is expected not to be affected
+				significance level apart from <strong>lags 10 and 12 </strong>. However, since this are far down the line, the model prediction is expected not to be affected
 				significantlly.</p>
 
-				<img src="images/ACF_residuals.png">
+				<img src="ACF_residuals.png">
 
 				<p>The residuals are plotted to check whether it resemble white noice as shown in <span style="color: red">Figure 5</span>. As seen
 				from the figure, there is no clear pattern exist, thus the residuals represent white noise. However, it can be
 				noticed that there were large peaks at the begining, in June and in September 2020 due the model inability to adapt 
 				to large changes quickly.</p>  
 
-				<img src="images/Residuals.png">
+				<img src="Residuals.png">
 				
 				<br>
 				<br>
@@ -335,17 +1074,176 @@
 				<p> <span style="color: red">Figure 6</span> shows how the model fits against the data. The red line represents the predictions, while the blue line
 				represents the actual data</p>
 
-				<img src="images/Data_Prediction.png">
+				<img src="Data_Prediction.png">
+				</div>
 
 
 
   
 
 				
-			</div>
+			
 		</div>
-	</section>
+		</section>
 	
+
+		<section id="references">
+
+		<div class='row'>
+			<br>
+			<br>
+			<h1>References</h1>
+			<div id='date-chart'>
+	            	<strong>
+	                [1]</strong> Griffith DM, Sharma G, Holliday CS, Enyia OK, Valliere M, Semlow AR, et al. Men and COVID-19: A Biopsychosocial Approach to Understanding Sex 
+			Differences in Mortality and Recommendations for Practice and Policy Interventions. Prev Chronic; 17:200247; Dis 2020. 
+	               	
+			<strong>
+			<br>
+			<br>
+	                [2]</strong> Sharma G, Volgman AS, Michos ED. Sex differences in mortality from COVID-19 pandemic: are men vulnerable and women protected? 
+			JACC Case Rep 2020.
+			
+
+			<br>
+			<br>
+	    		<strong>
+			[3]</strong> Gavin YO, Marc AP. Plasma angiotensin-converting enzyme 2: novel biomarker in heart failure with implications for COVID-19. 
+			European Heart Journal; 41(19): 1818–1820; May 2020.
+
+			<br>
+			<br>
+	    		<strong>
+
+			[4]</strong>
+			Matsuyama S, Nagata N, Shirato K, Kawase M, Takeda M, Taguchi F. Efficient activation of the severe acute respiratory syndrome coronavirus spike protein by the transmembrane protease TMPRSS2. 
+			J Virol; 84(24):12658–64: 2010. 
+
+			<br>
+			<br>
+	    		<strong>
+			[5]</strong>
+			Baker P, White A, Morgan R. Men’s health: COVID-19 pandemic highlights need for overdue policy action. Lancet 2020;395(10241):1886–8
+			
+			<br>
+			<br>
+	    		<strong>
+			[6]</strong>
+			McCarthy J. US coronavirus concerns surge, government trust slides. Gallup: Politics. Published March 16, 2020. Accessed April 20, 2021.
+			
+			<br>
+			<br>
+	    		<strong>
+			[7]</strong>
+			Ewig C. Gender, masculinity, and COVID-19. The Gender Policy Report. Published April 1, 2020. Accessed April 20, 2021.
+
+			<br>
+			<br>
+	    		<strong>
+			[8]</strong>
+			Smith JA, Griffith DM, White A, et al. COVID-19, equity and men’s health: using evidence to inform future public health policy, practice and research responses to pandemics. Int J Men Soc Commun Health . Forthcoming.
+
+			<br>
+			<br>
+	    		<strong>
+			[9]</strong>
+			White A. Our own fault? Men and COVID-19. Men’s Health Forum [blog]. Published March 31, 2020. Accessed April 20, 2021.
+
+
+			<br>
+			<br>
+	    		<strong>
+			[10]</strong>
+			Woodyatt A, Greene R. Men in low-skilled jobs are dying from coronavirus at a higher rate than other workers, UK figures show. Cable News Network. Published May 11, 2020. Accessed April 20, 2021.
+
+			<br>
+			<br>
+	    		<strong>
+			[11]</strong>
+			Mellström U. COVID-19, masculinity and risk/at risk. NORMA 2020;15(2):94–6.
+			
+			<br>
+			<br>
+	    		<strong>
+			[12]</strong>
+			Garcia S, Albaghdadi MS, Meraj PM, Schmidt C, Garberich R, Jaffer FA, et al. Reduction in ST-segment elevation cardiac catheterization laboratory activations in the United States during COVID-19 pandemic. J Am Coll Cardiol 2020;75(22):2871–2.
+
+			<br>
+			<br>
+	    		<strong>
+			[13]</strong>
+			Centers for Disease Control and Prevention. People with Certain Medical Conditions. U.S. Department of Health & Human Services. Published Mar 29, 2021. Accessed April 27, 2021.
+	       		
+
+
+			<br>
+			<br>
+	    		<strong>
+			[14]</strong>
+			Tao Z, Xu J, Chen W, et al. Anemia is associated with severe illness in COVID‐19: A retrospective cohort study. J Med Virol. 2021; 93: 1478–1488.
+
+
+			
+			<br>
+			<br>
+	    		<strong>
+			[15]</strong> Subramaniam V. Information About COVID-19 for Bronchiectasis Patients. BioNews Services, LLC. Published Mar 29, 2021. Accessed April 21, 2021.
+			</strong>
+
+		
+
+			<br>
+			<br>
+	    		<strong>
+			[16]</strong> Mathian A, Mahevas M, Rohmer J, et al. Clinical course of coronavirus disease 2019 (COVID-19) in a series of 17 patients with systemic lupus erythematosus under long-term treatment with hydroxychloroquine. 
+			Annals of the Rheumatic Diseases 2020;79:837-839.
+
+			<br>
+			<br>
+	    		<strong>
+			[17]</strong> Strausz S, Kiiskinen T, Broberg M, et al. Sleep apnoea is a risk factor for severe COVID-19. BMJ Open Respiratory Research 2021;8:e000845. 
+		
+			<br>
+			<br>
+	    		<strong>
+			[18]</strong> Hamidi S, Sabouri S, Ewing R. Does density aggravate the COVID-19 pandemic? J Am Plan Assoc. 2020. 
+
+			<br>
+			<br>
+	    		<strong>
+			[19]</strong> Carozzi F, Provenzano S, Roth S. Urban density and COVID-19. IZA Institure of Labor economics,discussion paper series 2020; IZA DP No. 13440
+		
+
+			<br>
+			<br>
+	    		<strong>
+			[20]</strong> The Household Income Survey by Departments of Statistics of Malaysia, 2019.
+
+
+			<br>
+			<br>
+	    		<strong>
+			[21]</strong> Population Quick Info by Departments of Statistics of Malaysia, 2020.
+
+
+			<br>
+			<br>
+	    		<strong>
+			[22]</strong> Preliminary Count Report by Departments of Statistics of Malaysia, 2010.
+
+
+			<br>
+			<br>
+	    		<strong>
+			[23]</strong> Chronic Kidney Disease (CKD) Symptoms and causes. Published February 02, 2017. National Kidney Foundation Inc.
+
+			<br>
+			<br>
+	    		<strong>
+			[24]</strong> Max Roser, Hannah Ritchie, Esteban Ortiz-Ospina and Joe Hasell. Coronavirus Pandemic (COVID-19). Published online at OurWorldInData.org, 2020.
+			
+		</div>
+		</section>
 	
 	</div>
 	
