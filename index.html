@@ -73,7 +73,7 @@
 	
 	<nav>
 	<div id="navbar1">
-	<p id="front_page">COVID-19 CASE PREDICTIONS IN MALAYSIA<p>
+	<p id="front_page">COVID-19 IN MALAYSIA<p>
 
 	<ul>
 
@@ -91,7 +91,7 @@
 	</div>
 	<br>
 	<br>
-	<div class="bg"><p id="frontpg"> COVID-19 CASE PREDICTIONS IN MALAYSIA <br> USING TIME SERIES ANALYSIS</p></div>
+	<div class="bg"><p id="frontpg"> COVID-19 CASES AND DEATHS <br> ANALYSIS IN MALAYSIA</p></div>
 	
 	
 	<div class='container' style='font: 12px sans-serif;' >
@@ -107,7 +107,7 @@
 	                </strong> (click and drag to filter by date)
 	                <span>
 	                <a class="reset"
-	                    href="javascript:dateChart.filterAll();dc.redrawAll();"
+	                    href="javascript:dateChart.filterAll();dc.redrawAll();filter_reset1()"
 	                    style="display: none;">
 	                reset
 	                </a>
@@ -123,7 +123,7 @@
 
 		<div class='row' style='margin-bottom:20px;margin-left:250px;font-size:15px;'>
 			<div>
-	            		<a href="javascript:dc.filterAll(); dc.renderAll();" >Reset All Filter</a>
+	            		<a href="javascript:dc.filterAll(); dc.renderAll();filter_reset1()" >Reset All Filter</a>
 	        	</div>
 			<br>
 			
@@ -162,7 +162,7 @@
 	                <span class="filter-count"></span> Selected Dates 
 	            </div>
 	            
-	            <input id="last" class="btn" type="Button" value="Prev" onclick="javascript:last()" />
+	            <input id="last" class="btn" type="Button" value="Prev" onclick="javascript:last()"/>
 	            <input id="next" class="btn" type="Button" value="Next" onclick="javascript:next()"/>
 		    <input id="reset_to_first" class="btn" type="Button" value="Reset to First" onclick="javascript:reset_to_first()"/>
 	        </div>
@@ -203,7 +203,7 @@
 	                    </strong>
 	                <span>
 	                <a class="reset"
-	                    href="javascript:piechart3.filterAll();dc.redrawAll();"
+	                    href="javascript:piechart3.filterAll();dc.redrawAll();filter_reset2()"
 	                    style="display: none;">
 	                	reset
 	                </a>
@@ -217,7 +217,7 @@
 	                </strong>
 	                <span>
 	                <a class="reset"
-	                    href="javascript:AgeGroupChart.filterAll();dc.redrawAll();"
+	                    href="javascript:AgeGroupChart.filterAll();dc.redrawAll();filter_reset2()"
 	                    style="display: none;">
 	                	reset
 	                </a>
@@ -232,7 +232,7 @@
 	                </strong>
 	                <span>
 	                <a class="reset"
-	                    href="javascript:locationChart.filterAll();dc.redrawAll();"
+	                    href="javascript:locationChart.filterAll();dc.redrawAll();filter_reset2()"
 	                    style="display: none;">
 	                	reset
 	                </a>
@@ -248,7 +248,7 @@
 	                </strong>
 	                <span>
 	                <a class="reset"
-	                    href="javascript:comobchart.filterAll();dc.redrawAll();"
+	                    href="javascript:comobchart.filterAll();dc.redrawAll();filter_reset2()"
 	                    style="display: none;">
 	                	reset
 	                </a>
@@ -263,7 +263,7 @@
 	                </strong> (click and drag to filter by date)
 	                <span>
 	                <a class="reset"
-	                    href="javascript:dateChart3.filterAll();dc.redrawAll();"
+	                    href="javascript:dateChart3.filterAll();dc.redrawAll();filter_reset2()"
 	                    style="display: none;">
 	                reset
 	                </a>
@@ -279,7 +279,7 @@
 		<div class='row' style='margin-bottom:20px;margin-left:425px;font-size:15px;'>
 
 			<div>
-	            		<a href="javascript:dc.filterAll(); dc.renderAll();" style="padding-left:38px;">Reset All Filter</a>
+	            		<a href="javascript:dc.filterAll(); dc.renderAll();filter_reset2()" style="padding-left:38px;">Reset All Filter</a>
 	        	</div>
 			<br>
 
@@ -354,7 +354,7 @@
 				<h1>Forecast</h1>
 			        <div id='date-chart2'>
 				<h5><strong>
-	                		Daily Covid-19 cases forecast from Feb 02 2021 - Mar 31 2021
+	                		Daily Covid-19 cases forecast from May 04 2021 - June 12 2021
 	                		</strong> (click and drag to filter by date)
 	                		<span>
 	                	<a class="reset"
@@ -373,7 +373,7 @@
 			</div>
 		</div>
 
-		<div class='row' style='margin-bottom:20px;margin-left:170px;font-size:15px;'>
+		<div class='row' style='margin-bottom:20px;margin-left:225px;font-size:15px;'>
 
 
 				<div  id='case-chart2'>
@@ -396,13 +396,16 @@
 				
 				
 				<h2>Part 1 - Deaths</h2>
-				
+				<p id='writetext'> The data for this section of the analysis is from <strong>March 3<sup>rd</sup> 2020 to April 4<sup>th</sup> 2021</strong>.
+				In between this period, there were instances where some or all of the information of the deceased is not available from Kementerian Kesihatan Malaysia
+				Facebook page. The total amount of <strong>data not available</strong> accounts for <strong>69-83</strong> depending on the category of information. However, this only a small fraction
+				of the overall data, thus the impact on the following analysis is expected to be minimum.</p>
 
 				<p id='writetext'><span class='Fig_Table'>Figure 1</span> shows Covid-19 deaths in Malaysia according to ten age groups. Based on the figure, it
 				can be seen that Covid-19 disproportionately affect patient with older age. Deaths related to <strong>age 60 and above represents 
 				70% </strong>of total deaths while this value increases to <strong>94% if age 40 and above</strong> were considered.</p> 
 				
-				<img  class="img-responsive center-block test" src="images/Deaths_age_group.png">
+				<img  class="img-responsive center-block test" src="Deaths_age_group.png">
 
 				
 				<p id='writetext'><span class='Fig_Table'>Table 1</span> shows the breakdown of deaths percentage and deaths rate ratio by age group. For 
@@ -494,10 +497,10 @@
 				
 				<div class='row_pic'>
   					
-    						<img  class="img-responsive center-block test" src="images/Deaths_gender.png">
+    						<img  class="img-responsive center-block test" src="Deaths_gender.png">
   					
   					
-    						<img class="img-responsive center-block test" src="images/Deaths_comorbidity.png">
+    						<img class="img-responsive center-block test" src="Deaths_comorbidity.png">
   					
 				</div>
 
@@ -518,7 +521,7 @@
 				representing <strong>33.7% </strong>followed by diabetes (25.6%), chronic kidney disease (12.2%), heart disease (11.2%), stroke (5.8%) and others (11.5%). </p>
 				
 
-				<img class="img-responsive center-block test" src="images/Deaths_no_comorbidity.png">
+				<img class="img-responsive center-block test" src="Deaths_no_comorbidity.png">
 
 				<p id='writetext'><span class='Fig_Table'>Figure 4</span> shows the number of Covid-19 related comorbidities the deceased had. <strong>84% </strong>of the deceased had at least <strong>one or more
 				comorbidities</strong> related to Covid-19 while the remaining <strong>16% did not have any Covid-19 related comorbidities</strong>. 
@@ -532,10 +535,10 @@
 
 				<div class='row_pic'>
   					
-    						<img  class="img-responsive center-block test" src="images/Date_to_Deaths_groups.png">
+    						<img  class="img-responsive center-block test" src="Date_to_Deaths_groups.png">
   					
   					
-    						<img class="img-responsive center-block test" src="images/Date_to_Deaths_group_0_9.png">
+    						<img class="img-responsive center-block test" src="Date_to_Deaths_group_0_9.png">
   					
 				</div>
 
@@ -557,7 +560,7 @@
 
 				
 
-				<img class="img-responsive center-block test" src="images/Deaths_by_day.png">
+				<img class="img-responsive center-block test" src="Deaths_by_day.png">
 				
 
 				<p id='writetext'><span class='Fig_Table'>Figure 8</span> shows the number of deaths according to the states in Malaysia.
@@ -565,7 +568,7 @@
 				is estimated by the frequency of death that occcured on states 7 days prior and 7 days ahead of the missing date data. According to <span class='Fig_Table'>Figure 8</span>,
 				<strong>Sabah (412) recorded the highest number of deaths</strong> followed by Selangor (369), Sarawak (137), Kuala Lumpur (125), Johor (110), and the rest (227).</p>  
 				 
-				<img class="img-responsive center-block test" src="images/Deaths_by_states.png">
+				<img class="img-responsive center-block test" src="Deaths_by_states.png">
 
 
 				<p id='writetext'>The number of Covid-19 cases and the number of deaths have a <strong>strong linear correlation</strong> as can be seen from <span class='Fig_Table'>Figure 9</span>. Based on
@@ -574,7 +577,7 @@
 				from the dataset, the <strong>Pearson correlation scores move close to 1 (0.97)</strong> which indicates that Sabah deaths to case ratio do not tally with the rest
 				of the states in Malaysia.</p>
 
-				<img class="img-responsive center-block test" src="images/Cases_vs_deaths.png">
+				<img class="img-responsive center-block test" src="Cases_vs_deaths.png">
 				
 
 				<p id='writetext'>The impact of population density on the number of deaths per 100,000 cases is investigated. The corresponding plot is shown in 
@@ -588,7 +591,7 @@
 				However, both Covid-19 infection and <strong>death rates are unrelated to urban population density</strong>.</p>
 				  
 
-				<img class="img-responsive center-block test" src="images/Deaths_vs_density.png">
+				<img class="img-responsive center-block test" src="Deaths_vs_density.png">
 
 
 
@@ -598,7 +601,7 @@
 				of deaths per 100,000 cases versus median income for different states in Malaysia. These two criteria have a <strong>Pearson correlation of -0.03</strong> which indicates
 				<strong>no correlation</strong>. Thus, it can be concluded that <strong>socio-economic factors not a determinant factor</strong> for Covid-19 deaths in Malaysia. </p> 
 				
-				<img class="img-responsive center-block test" src="images/Deaths_vs_income.png">
+				<img class="img-responsive center-block test" src="Deaths_vs_income.png">
 
 				<p id='writetext'>Data used for <span class='Fig_Table'>Figure 9-11</span> is presented in <span class='Fig_Table'>Table 2</span>.</p>
 
@@ -919,7 +922,7 @@
 				<p id='writetext'> The second hypothesis that can be proposed is that <strong>Sabah have a population that is less healthy</strong> than the rest 
 				of the state in Malaysia. As mentioned earlier <strong>84% of deceased</strong> has at least </strong>one or more Covid-19 comorbidities</strong>. In order,
 				to validate this hypothesis, data from <a href='https://www.moh.gov.my/moh/penerbitan/MYHAAG2018.pdf'>Malaysian Health at Glance</a> [23] report by MOH is examined.
-				Based on this <span class='Fig_Table'>Figure 12</span>, <strong> Sabah has a morbidity rate</strong>  due to tracer conditions for hypertension
+				Based on <span class='Fig_Table'>Figure 12</span>, <strong> Sabah has a morbidity rate</strong>  due to tracer conditions for hypertension
 				and diabetes <strong> lower than the national average</strong>. Note that these two diseases were the top two comorbidities associated with Covid-19 deaths (<span class='Fig_Table'>Figure 3</span>).
 				While the third most frequent comorbidities associated to Covid-19 deaths i.e. chronic kidney disease (<span class='Fig_Table'>Figure 3</span>) is caused by 
 				diabetes and high blood pressure according with <a href='https://www.kidney.org/atoz/content/about-chronic-kidney-disease#:~:text=The%20two%20main%20causes%20of,blood%20vessels%2C%20nerves%20and%20eyes.'>
@@ -928,7 +931,7 @@
 				
 
 				<center><p id='writetext' style='font-weight: bold';>Figure 12: Morbidity rate for tracer conditions</p></center>
-				<img class="img-responsive center-block test" src="images/HBP_DM.png" style="width:550px;height:500px;">
+				<img class="img-responsive center-block test" src="HBP_DM.png" style="width:550px;height:500px;">
 
 				<p id='writetext'>The third probable hypothesis is that the <strong>Sabah Covid-19 positive cases are under-reported</strong>. To validate this
 				claim, the Covid-19 positive rate shown in <span class='Fig_Table'>Figure 13</span> is examined [<a href='https://ourworldindata.org/coronavirus-testing'>24</a>]. According to criteria published by WHO, in May 2020, <strong>a positive rate of less than 5%</strong> is one indicator 
@@ -936,145 +939,183 @@
 				faster than the growth that is seen in confirmed cases</strong> [24]. As shown in <span class='Fig_Table'>Figure 13</span>, the <strong>positive rate in Malaysia exceeds the 5%
 				threshold around November 2020</strong>. </p>
 
-				<img class="img-responsive center-block test" src="images/positive_rate.png">
+				<img class="img-responsive center-block test" src="positive_rate.png">
 
 				<p id='writetext'>Coincidentally, this was the time when Sabah was experiencing its worst outbreak as shown
 				in <span class='Fig_Table'>Figure 14</span>.Thus, a lot of Covid-19 cases <strong>likely goes unreported during this period</strong> and the actual number of cases for <strong>Sabah should be more than 100,000</strong> 
-				and not 56,795 that were reported. </p>
+				and not 56,795 as what was reported. </p>
 
-				<img class="img-responsive center-block test" src="images/Sabah.png">
+				<img class="img-responsive center-block test" src="Sabah.png">
 
 
 				<h2>Part 2 - Covid-19 case prediction</h2>
 
 
-				<p id='writetext'> The Covid-19 daily cases are <strong>averaged for 7 days</strong> to smoothen the day-to-day
-                                      fluctuations. The resulting graph is shown in <span style="color: red">Figure 1</span>.</p> 
+				<p id='writetext'> The Covid-19 daily cases are <strong>averaged for 7 days</strong> for the period from <strong>24<sup>th</sup> Jan 2020 to 12<sup>th</sup>
+				 May 2021</strong> to smoothen the day-to-day fluctuations. The resulting graph is shown in <span class='Fig_Table'>Figure 15</span>.</p> 
+                        
+				<br>
+				<img class="img-responsive center-block test" src="Daily_cases.png">
+				<br>
+				<br>
+
+				<p id='writetext'> In order to predict the number of cases more accurately, the mobility of Malaysian is used as exogenous variables in time series analysis.
+				This mobility data is obtained from <strong>‘COVID-19 Community Mobility Reports’</strong> by Google [<a href='https://www.google.com/covid19/mobility/'>25</a>] who collected extensive anonymised mobile 
+				device GPS user data and estimates the <strong>percentage change in activity in certain categories</strong> by country, states and day. For this study, two categories i.e. <strong>‘places of work’</strong> and <strong>‘retail & recreation’</strong> (including restaurants, cafes, shopping centres, theme parks, museums, libraries, and movie theatres)
+				will be used. <span class='Fig_Table'>Figure 16</span> shows the plot of these two categories. </p>
+
+				<img class="img-responsive center-block test" src="Mobility.png">
+				
+				<p id='writetext'> Note that in <span class='Fig_Table'>Figure 16</span>, the dashed line represents Malaysia government lockdowns dates to curb the pandemic situation. In total, <strong>three types of lockdowns</strong> applicable to the whole nation i.e. <strong>movement control order (MCO), 
+				conditional movement control order (CMCO) and recovery movement control order (RMCO)</strong> with the order of severity on the restriction movement decreases from MCO, CMCO and RMCO. From <span class='Fig_Table'>Figure 16</span>, there are instances where the workplace (blue line) mobility decreases severely without any change in 
+				lockdown condition. These are due to <strong>public holidays</strong>. The impact of public holidays however does not necessarily decrease the mobility in retail and recreational (green line) unlike for workplace mobility. 
+				From <span class='Fig_Table'>Figure 16</span>, it can also be noticed that there is a small <strong>cyclic behaviour in both categories</strong> with prevalence in the workplace. This behavioural is due to the 
+				<strong>change in the level of activities</strong> that occur throughout each week. For the workplace, Monday normally shows the highest percentage of mobility and then starts decreasing through the week until Sunday which represents the 
+				lowest mobility percentage. For retail and recreational, Sunday or Monday has the highest peak and mobility starts declining until Saturday. In order to flatten these peaks and troughs, the <strong>values are averaged for 31 days</strong> for time series analysis.</p>
+				
+ 
+
+
+
 
 				
-				
-				
-				<br>
-				<img src="images/Daily_cases.png">
-				<br>
-				<br>
-				
-				<p>To convert the data into a stationary time series, differencing approach 
-				is applied on the daily cases values. Next, Dicky-Fuller test was carried out to  
+				<p id='writetext'>Differencing approach is applied on the daily cases values in order to convert the data into a stationary time series. Next, Dicky-Fuller test was carried out to  
 				confirm the new transformed data stastifiy stationarity condition. The resulting calculation <strong>(see below)</strong> 
 				shows the level of significance is close to 0, confirming stationarity. </p>
 
-				<img src="images/ad_fuller.png" style="width:250px;height:200px;">
-				<p> ACF and PACF graph are plotted as shown in <span style="color: red">Figure 2</span>  
-					and <span style="color: red">Figure 3</span> to determine the number of lags 
+				<img class="img-responsive center-block test" src="ad_fuller.png" style="width:300px;height:200px;">
+				<p id='writetext'> ACF and PACF graph are plotted as shown in <span class='Fig_Table'>Figure 17</span>  
+					and <span class='Fig_Table'>Figure 18</span> to determine the number of lags 
 					to be considered in auto regression moving average (ARMA) model.</p>
 
 
 				<div class="row_pic">
-  					<div class="column_pic">
-    						<img src="images/ACF_daily_cases.png">
-  					</div>
-  					<div class="column_pic">
-    						<img src="images/PACF_daily_cases.png">
-  					</div>
+  					
+    						<img class="img-responsive center-block test" src="ACF_daily_cases.png">
+  					
+  					
+    						<img class="img-responsive center-block test" src="PACF_daily_cases.png">
+  					
 				</div>
-				<p> For the ACF (<span style="color: red">Figure 2</span>), lags until <strong>day 12</strong> shows values above significance level.
-				While for the PACF (<span style="color: red">Figure 3</span>), lags until <strong>day 14</strong> shows values above significance level. </p>
+				<p> For the ACF (<span class='Fig_Table'>Figure 17</span>) and PACF (<span class='Fig_Table'>Figure 18</span>), lags until <strong>day 24</strong> shows values above significance level.
+				
 				<br>
-				<p> ARMA model with lags up to 7 days for AR and MA are tested. In total 114 different models were simulated and 
-				only <strong>10 models</strong> show result where all coefficients are above 5% siginficance level. The Log Likelihood and AIC
-				for these models are summarised in the <span style="color: red">Table 1</span> below.</p> 
+				<p> ARMAX model with lags up to 7 days for AR and MA are tested. In total 63 different models were simulated and 
+				only <strong>12 models</strong> show result where all coefficients are above 5% siginficance level. The Log Likelihood and AIC
+				for these models are summarised in the <span class='Fig_Table'>Table 4</span> below.</p> 
 
-				<strong>Table 1</strong>: Log Likelihood and AIC values for different
-  				<table style="width:50%">
-  				<tr>
+				<p id='writetext'; style='font-weight: bold;'>Table 4: Log Likelihood and AIC values for different</p>
+  				<table id='writetext' class='table  table-bordered table-striped table-hover dc-data-table'  style="width:70%" >
+	            			<thead>
+	                		<tr class='header'>
+  				
     					<th class="text-center">ARMA Model</th>
     					<th class="text-center">Log Likelihood</th>
 					<th class="text-center">AIC</th>
   				</tr>
+
+				</thead>
   				<tr>
-    					<td>(0,1)</td>
-    					<td>-1583.218</td>
-    					<td>3172.435</td>
-  				</tr>
-				<tr>
-    					<td>(1,1)</td>
-    					<td>-1571.061</td>
-    					<td>3150.122</td>
-  				</tr>
-				<tr>
     					<td>(1,0)</td>
-    					<td>-1581.767</td>
-    					<td>3169.534</td>
+    					<td>-1649.636</td>
+    					<td>3309.271</td>
   				</tr>
 				<tr>
-    					<td>(2,0)</td>
-    					<td>-1579.113</td>
-    					<td>3166.226</td>
+    					<td>(1,2)</td>
+    					<td>-1646.801</td>
+    					<td>3307.603</td>
+  				</tr>
+				<tr>
+    					<td>(1,3)</td>
+    					<td>-1640.801</td>
+    					<td>3297.601</td>
+  				</tr>
+				<tr>
+    					<td>(2,3)</td>
+    					<td>-1621.950</td>
+    					<td>3261.900</td>
   				</tr>
 				<tr>
     					<td>(3,3)</td>
-    					<td>-1567.122</td>
-    					<td>3150.244</td>
+    					<td>-1619.778</td>
+    					<td>3259.556</td>
   				</tr>
 				<tr>
-    					<td>(4,2)</td>
-    					<td>-1563.218</td>
-    					<td>3142.436</td>
+    					<td>(3,2)</td>
+    					<td>-1620.827</td>
+    					<td>3259.654</td>
+  				</tr>
+				<tr>
+    					<td>(1,5)</td>
+    					<td>-1621.261</td>
+    					<td>3262.522</td>
+  				</tr>
+				<tr>
+    					<td>(0,5)</td>
+    					<td>-1622.653</td>
+    					<td>3263.307</td>
   				</tr>
 				<tr>
     					<td>(4,6)</td>
-    					<td>-1549.791</td>
-    					<td>3123.582</td>
+    					<td>-1589.899</td>
+    					<td>3207.797</td>
   				</tr>
 				<tr>
-    					<td>(7,4)</td>
-    					<td>-1538.022</td>
-    					<td>3102.044</td>
+    					<td>(3,6)</td>
+    					<td>-1593.448</td>
+    					<td>3212.896</td>
   				</tr>
+
 				<tr>
-    					<td>(1,9)</td>
-    					<td>-1531.411</td>
-    					<td>3086.822</td>
+    					<td>(2,6)</td>
+    					<td>-1603.771</td>
+    					<td>3231.542</td>
   				</tr>
+
 				<tr>
-    					<td>(8,9)</td>
-    					<td>-1527.545</td>
-    					<td>3093.090</td>
+    					<td>(4,7)</td>
+    					<td>-1588.195</td>
+    					<td>3206.390</td>
   				</tr>
 
 				</table>
 				<br>
 
-				<p> From <span style="color: red">Table 1</span>, <strong>ARMA model 8,9 and 1,9</strong> have the lowest Log likelihood and AIC values 
-				compared to the rest of the models. Log likelihood ratio test between these two models proved that model 1,9 was better and
-				thus this model residual will be examined further to determine whether it is a good fit.
+				<p> From <span class='Fig_Table'>Table 5</span>, <strong>ARMA model 4,7</strong> has the highest Log likelihood and lowest AIC values 
+				compared to the rest of the models. Thus, this model residual will be examined further to determine whether it is a good fit.
 
 
-				First, the Dicky-Fuller test show the significance level of the residual is close to 0, thus it is stationary. </p>
+				First, the Dicky-Fuller test show the significance level of the residual is 0, thus it is stationary. </p>
+				<div class="row_pic">
+  					
+    						<img class="img-responsive center-block test" src="ad_fuller2.png" style="width:300px;height:200px;">
+  					
+  					
+    						<img class="img-responsive center-block test" src="ACF_residuals.png">
+  					
+				</div>
+				<img >
 
-				<img src="images/ad_fuller2.png" style="width:250px;height:200px;">
-
-				<p>Second, the residual values are checked for autocorrelation as shown <span style="color: red">Figure 4</span>. All lags show ACF values below 
-				significance level apart from <strong>lags 10 and 12 </strong>. However, since this are far down the line, the model prediction is expected not to be affected
+				<p>Second, the residual values are checked for autocorrelation as shown <span class='Fig_Table'>Figure 19</span>. All lags show ACF values below 
+				significance level apart from <strong>lags 24 and 31 </strong>. However, since these values are far down the line, the model prediction is expected not to be affected
 				significantlly.</p>
 
-				<img src="images/ACF_residuals.png">
+				
 
-				<p>The residuals are plotted to check whether it resemble white noice as shown in <span style="color: red">Figure 5</span>. As seen
+				<p>The residuals shown in <span class='Fig_Table'>Figure 20</span> are plotted to check whether it resembles white noise. As seen
 				from the figure, there is no clear pattern exist, thus the residuals represent white noise. However, it can be
-				noticed that there were large peaks at the begining, in June and in September 2020 due the model inability to adapt 
-				to large changes quickly.</p>  
+				noticed that there were large peaks in June and in September 2020 due to the model inability to adapt 
+				to sudden large changes quickly.</p>  
 
-				<img src="images/Residuals.png">
+				<img class="img-responsive center-block test" src="Residuals.png">
 				
 				<br>
 				<br>
 
-				<p> <span style="color: red">Figure 6</span> shows how the model fits against the data. The red line represents the predictions, while the blue line
+				<p> <span class='Fig_Table'>Figure 21</span> shows how the model fits against the data. The green line represents the predictions, while the blue line
 				represents the actual data</p>
 
-				<img src="images/Data_Prediction.png">
+				<img class="img-responsive center-block test" src="Data_Prediction.png">
 				</div>
 
 
@@ -1242,6 +1283,12 @@
 	    		<strong>
 			[24]</strong> Max Roser, Hannah Ritchie, Esteban Ortiz-Ospina and Joe Hasell. Coronavirus Pandemic (COVID-19). Published online at OurWorldInData.org, 2020.
 			
+
+			<br>
+			<br>
+	    		<strong>
+			[25]</strong>
+			 Google. COVID-19 Community Mobility Reports. Accessed May 13, 2021.
 		</div>
 		</section>
 	
