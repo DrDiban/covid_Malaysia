@@ -111,7 +111,7 @@ d3.csv(window.CrossFilter3.config.dataUrl,  function (data) {
 	var medianGroup = medianDimension.group();
 	
 	reducerMedianAge(medianGroup);
-	console.log(medianGroup.top(Infinity));
+	
 	
 	medianDisplay
     	        .group(medianGroup)
@@ -332,24 +332,25 @@ var currentSize2 = 0;
 var disp2;
 
   function reset_to_first2() {
+
 	ofs2=1, pag2=20;
 	update2();
 	deathTable.redraw();
 	}
 
   function update2() {
-     deathTable.beginSlice(ofs2-1);
+      deathTable.beginSlice(ofs2-1);
       deathTable.endSlice(ofs2+pag2);
       display2();
   }
 
   function display2() {
-      disp2 = document.getElementsByClassName('filter-count')[0].innerHTML
+      disp2 = document.getElementsByClassName('filter-count')[1].innerHTML
 	  currentSize2 = parseFloat(disp2.replace(',',''));
       d3.select('#begin2')
           .text(ofs2);
       d3.select('#end2')
-          .text(ofs2+pag2-1);
+          .text(ofs2+pag2-1>=currentSize2 ? currentSize2 :ofs2+pag2-1 );
       d3.select('#last2')
           .attr('disabled', ofs2-pag2<0 ? 'true' : null);
       d3.select('#next2')
@@ -417,26 +418,29 @@ d3.csv(window.CrossFilter2.config.dataUrl,  function (data) {
             		return d.value.sum; });
 
 	dateChart2
-		.width(500)
+		.width(600)
 		.height(350)
 		.margins({top: 20, right: 10, bottom: 40, left: 40})
 		.dimension(dateDimension)
 		.group(dateGroup)
-		.x(d3.time.scale().domain([new Date(2021, 02, 1), new Date(2021, 03, 04)]))
+		.x(d3.time.scale().domain([new Date(2021, 04, 12), new Date(2021, 05, 14)]))
 		.xUnits(d3.time.days)
 		.barPadding(0.0)
 		.outerPadding(0.00)
 		.centerBar(true)
 		.elasticY(true)
-		.ordinalColors(['#525252'])
-			.xAxis().ticks(d3.time.months, 1)
-				.tickFormat(d3.time.format("%b,%Y"));
+		.xAxisLabel('Dates')
+		.yAxisLabel('Covid-19 cases')
+		
+		.ordinalColors(['#404d44'])
+			.xAxis().ticks(d3.time.days, 4)
+				.tickFormat(d3.time.format("%b,%d"));
 
 
 
 
-	dateChart2.yAxis().ticks(1)
-	.tickFormat(d3.format('3s'));
+	dateChart2.yAxis().ticks(5);
+	
 
 	dc.renderAll(); 
 
@@ -589,8 +593,11 @@ d3.csv(window.CrossFilter1.config.dataUrl,  function (data) {
 		.xAxisLabel('Dates')
 		.yAxisLabel('Covid-19 cases')
 		.ordinalColors(['#7256f0'])
+		
 		.xAxis().ticks(d3.time.months, 1)
 		.tickFormat(d3.time.format("%b,%Y"));
+
+	
 
 
 	
@@ -624,12 +631,23 @@ const sections=document.querySelectorAll('section');
 const navLi=document.querySelectorAll('nav #navbar1 ul li');
 
 window.addEventListener('scroll', ()=> {
-  console.log(pageYOffset);
+  /*console.log(pageYOffset)*/;
   let current='';
+  var div=7;
+	
   sections.forEach(section=>{
+    
+	if (section==analysis){
+	
+	div=100;
+
+	}
+	else {
+	div=7;
+	}	
     const sectionTop = section.offsetTop;
     const sectionHeight = section.clientHeight;
-    if(pageYOffset>=(sectionTop-sectionHeight/7)){
+    if(pageYOffset>=(sectionTop-sectionHeight/div)){
 	current=section.getAttribute('id');
 	}
     
@@ -640,7 +658,7 @@ window.addEventListener('scroll', ()=> {
 		li.classList.add('active')
 	}
 	})
-	console.log(current);
+	
 })
 var ofs = 1, pag = 20;
 var currentSize = 0;
@@ -655,12 +673,12 @@ var disp;
 
 
   function display() {
-	  disp = document.getElementsByClassName('filter-count')[0].innerHTML
-	  currentSize = parseFloat(disp.replace(',',''));
+	disp = document.getElementsByClassName('filter-count')[0].innerHTML
+	currentSize = parseFloat(disp.replace(',',''));
       d3.select('#begin')
           .text(ofs);
       d3.select('#end')
-          .text(ofs+pag-1);
+          .text(ofs+pag-1>=currentSize ? currentSize :ofs+pag-1);
       d3.select('#last')
           .attr('disabled', ofs-pag<0 ? 'true' : null);
       d3.select('#next')
@@ -686,5 +704,92 @@ var disp;
 	
   }
 
+/*Filter table for chart1*/
+var death_location= d3.select("#date-chart").on("click", function() {
+
+filter_reset1()
+    	
+	
+})
+
+function filter_reset1(){
+
+	disp = document.getElementsByClassName('filter-count')[0].innerHTML
+	df= parseFloat(disp.replace(',',''));
+
+	d3.select('#end').text(df<20 ? df :ofs+pag-1);
+      	d3.select('#next')
+          .attr('disabled', df<20 ? 'true' : null);
+	
+	
+	ofs=1, pag=20;
+
+	update();
+	caseTable.redraw();
+	d3.select('#begin').text(df>=1 ? 1:0);
 
 
+}
+
+
+/*Filter table for chart3*/
+
+var death_date=dateChart3.on("filtered.monitor",function(dateChart3) { d3.select("#date-chart3").on("mouseup", function() {
+	filter_reset2()
+    })	
+	
+})
+
+var death_location= d3.select("#location-chart").on("click", function() {
+
+	filter_reset2()
+    	
+	
+})
+
+var death_location= d3.select("#location-chart").on("click", function() {
+
+	filter_reset2()
+    	
+	
+})
+
+var death_comorbid= d3.select("#comob-chart").on("click", function() {
+
+	filter_reset2()
+    		
+})
+
+var death_ageGroup= d3.select("#group-chart").on("click", function() {
+
+	filter_reset2()
+    		
+})
+
+var death_gender= d3.select("#pie-chart3").on("click", function() {
+	filter_reset2()
+    		
+})
+
+function filter_reset2(){
+	disp = document.getElementsByClassName('filter-count')[1].innerHTML
+	df= parseFloat(disp.replace(',',''));
+
+	d3.select('#end2').text(df<20 ? df :ofs2+pag2-1);
+      	d3.select('#next2')
+          .attr('disabled', df<20 ? 'true' : null);
+	
+	
+	ofs2=1, pag2=20;
+
+	update2();
+	deathTable.redraw();
+	d3.select('#begin2').text(df>=1 ? 1:0);
+}
+
+
+
+dateChart3.on("postRender",function(){
+	disp = document.getElementsByClassName('filter-count')[1].innerHTML
+	df= parseFloat(disp.replace(',',''));
+	})
