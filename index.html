@@ -973,11 +973,6 @@
 				<strong>change in the level of activities</strong> that occur throughout each week. For the workplace, Monday normally shows the highest percentage of mobility and then starts decreasing through the week until Sunday which represents the 
 				lowest mobility percentage. For retail and recreational, Sunday or Monday has the highest peak and mobility starts declining until Saturday. In order to flatten these peaks and troughs, the <strong>values are averaged for 31 days</strong> for time series analysis.</p>
 				
- 
-
-
-
-
 				
 				<p id='writetext'>Differencing approach is applied on the daily cases values in order to convert the data into a stationary time series. Next, Dicky-Fuller test was carried out to  
 				confirm the new transformed data stastifiy stationarity condition. The resulting calculation <strong>(see below)</strong> 
@@ -997,10 +992,10 @@
     						<img class="img-responsive center-block test" src="images/PACF_daily_cases.png">
   					
 				</div>
-				<p> For the ACF (<span class='Fig_Table'>Figure 17</span>) and PACF (<span class='Fig_Table'>Figure 18</span>), lags until <strong>day 24</strong> shows values above significance level.
+				<p id='writetext'> For the ACF (<span class='Fig_Table'>Figure 17</span>) and PACF (<span class='Fig_Table'>Figure 18</span>), lags until <strong>day 24</strong> shows values above significance level.
 				
 				<br>
-				<p> ARMAX model with lags up to 7 days for AR and MA are tested. In total 63 different models were simulated and 
+				<p id='writetext'> ARMAX model with lags up to 7 days for AR and MA are tested. In total 63 different models were simulated and 
 				only <strong>12 models</strong> show result where all coefficients are above 5% siginficance level. The Log Likelihood and AIC
 				for these models are summarised in the <span class='Fig_Table'>Table 4</span> below.</p> 
 
