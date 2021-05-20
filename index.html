@@ -986,7 +986,7 @@
 				<img class="img-responsive center-block test" src="images/ad_fuller.png" style="width:300px;height:200px;">
 				<p id='writetext'> ACF and PACF graph are plotted as shown in <span class='Fig_Table'>Figure 17</span>  
 					and <span class='Fig_Table'>Figure 18</span> to determine the number of lags 
-					to be considered in auto regression moving average (ARMA) model.</p>
+					to be considered in auto regression moving average (ARMAX) model.</p>
 
 
 				<div class="row_pic">
@@ -1009,7 +1009,7 @@
 	            			<thead>
 	                		<tr class='header'>
   				
-    					<th class="text-center">ARMA Model</th>
+    					<th class="text-center">ARMAX Model</th>
     					<th class="text-center">Log Likelihood</th>
 					<th class="text-center">AIC</th>
   				</tr>
@@ -1081,7 +1081,7 @@
 				</table>
 				<br>
 
-				<p> From <span class='Fig_Table'>Table 5</span>, <strong>ARMA model 4,7</strong> has the highest Log likelihood and lowest AIC values 
+				<p id='writetext'> From <span class='Fig_Table'>Table 5</span>, <strong>ARMA model 4,7</strong> has the highest Log likelihood and lowest AIC values 
 				compared to the rest of the models. Thus, this model residual will be examined further to determine whether it is a good fit.
 
 
@@ -1094,15 +1094,15 @@
     						<img class="img-responsive center-block test" src="images/ACF_residuals.png">
   					
 				</div>
-				<img >
+				
 
-				<p>Second, the residual values are checked for autocorrelation as shown <span class='Fig_Table'>Figure 19</span>. All lags show ACF values below 
+				<p id='writetext'>Second, the residual values are checked for autocorrelation as shown <span class='Fig_Table'>Figure 19</span>. All lags show ACF values below 
 				significance level apart from <strong>lags 24 and 31 </strong>. However, since these values are far down the line, the model prediction is expected not to be affected
 				significantlly.</p>
 
 				
 
-				<p>The residuals shown in <span class='Fig_Table'>Figure 20</span> are plotted to check whether it resembles white noise. As seen
+				<p id='writetext'>The residuals shown in <span class='Fig_Table'>Figure 20</span> are plotted to check whether it resembles white noise. As seen
 				from the figure, there is no clear pattern exist, thus the residuals represent white noise. However, it can be
 				noticed that there were large peaks in June and in September 2020 due to the model inability to adapt 
 				to sudden large changes quickly.</p>  
@@ -1112,7 +1112,7 @@
 				<br>
 				<br>
 
-				<p> <span class='Fig_Table'>Figure 21</span> shows how the model fits against the data. The green line represents the predictions, while the blue line
+				<p id='writetext'> <span class='Fig_Table'>Figure 21</span> shows how the model fits against the data. The green line represents the predictions, while the blue line
 				represents the actual data</p>
 
 				<img class="img-responsive center-block test" src="images/Data_Prediction.png">
