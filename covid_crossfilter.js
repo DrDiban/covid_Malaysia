@@ -153,7 +153,7 @@ d3.csv(window.CrossFilter3.config.dataUrl,  function (data) {
 		.elasticY(true)
 		.xAxisLabel('Dates')
 		.yAxisLabel('Covid-19 deaths')
-		.ordinalColors(['#fc2e1c'])
+		.ordinalColors(['#9e1000'])
 		.xAxis().ticks(d3.time.months, 1)
 		.tickFormat(d3.time.format("%b,%Y"))
 
