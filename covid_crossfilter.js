@@ -145,7 +145,7 @@ d3.csv(window.CrossFilter3.config.dataUrl,  function (data) {
 		.margins({top: 20, right: 10, bottom: 40, left: 40})
 		.dimension(dateDimension)
 		.group(dateGroup)
-		.x(d3.time.scale().domain([new Date(2020, 02, 1), new Date(2021, 05, 01)]))
+		.x(d3.time.scale().domain([new Date(2020, 02, 1), new Date(2021, 05, 15)]))
 		.xUnits(d3.time.days)
 		.barPadding(0.0)
 		.outerPadding(0.00)
@@ -153,7 +153,7 @@ d3.csv(window.CrossFilter3.config.dataUrl,  function (data) {
 		.elasticY(true)
 		.xAxisLabel('Dates')
 		.yAxisLabel('Covid-19 deaths')
-		.ordinalColors(['#bd2015'])
+		.ordinalColors(['#912117'])
 		.xAxis().ticks(d3.time.months, 1)
 		.tickFormat(d3.time.format("%b,%Y"))
 
